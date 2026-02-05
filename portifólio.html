@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleydson Cley | Social Media & Design</title>
+    <!-- Fontes -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <!-- Ícones -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --preto-profundo: #0E0E0E;
+            --cinza-carvao: #2A2A2A;
+            --cinza-fosco: #B5B5B5;
+            --verde-musgo-escuro: #3A4F3C;
+            --verde-musgo-pastel: #8FAF9A;
+            --off-white: #EFEDE7;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--preto-profundo);
+            color: var(--cinza-fosco);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* TEXTURA DE SUJO / GRUNGE OVERLAY */
+        .texture-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+            opacity: 0.4;
+            z-index: 10;
+            pointer-events: none;
+            mix-blend-mode: overlay;
+        }
+
+        /* NAVEGAÇÃO INTERATIVA */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            padding: 25px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: linear-gradient(to bottom, var(--preto-profundo), transparent);
+            backdrop-filter: blur(5px);
+        }
+        .logo { color: var(--off-white); font-weight: 900; letter-spacing: -1px; font-size: 1.3rem; }
+        .nav-links a { 
+            color: var(--cinza-fosco); text-decoration: none; margin-left: 25px; 
+            font-size: 0.75rem; text-transform: uppercase; font-weight: 700; 
+            letter-spacing: 1px; transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--verde-musgo-pastel); }
+
+        /* HEADER HERO */
+        header {
+            height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 0 20px;
+            background: radial-gradient(circle at center, var(--cinza-carvao) 0%, var(--preto-profundo) 100%);
+        }
+
+        .profile-img {
+            width: 140px; height: 140px; border-radius: 50%;
+            border: 2px solid var(--verde-musgo-escuro); padding: 5px;
+            object-fit: cover; margin-bottom: 30px;
+            filter: sepia(20%) contrast(110%);
+            transition: var(--transition);
+        }
+        .profile-img:hover { transform: scale(1.05) rotate(5deg); border-color: var(--verde-musgo-pastel); }
+
+        h1 { 
+            font-size: clamp(3.5rem, 15vw, 7rem); font-weight: 900; 
+            color: var(--off-white); line-height: 0.8; letter-spacing: -5px;
+            text-transform: uppercase; margin-bottom: 10px;
+        }
+        .hero-tag { color: var(--verde-musgo-pastel); font-weight: 600; letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem; }
+
+        .btn-cta {
+            margin-top: 40px; padding: 20px 40px;
+            background: var(--verde-musgo-escuro); color: var(--off-white);
+            text-decoration: none; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 1px; border-radius: 2px;
+            display: inline-flex; align-items: center; gap: 15px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        .btn-cta:hover { background: transparent; border-color: var(--verde-musgo-pastel); color: var(--verde-musgo-pastel); transform: translateY(-5px); }
+
+        /* SEÇÕES */
+        section { padding: 120px 8%; max-width: 1400px; margin: auto; }
+        .section-title { 
+            font-size: 3rem; font-weight: 900; color: var(--off-white); 
+            text-transform: uppercase; margin-bottom: 60px; letter-spacing: -2px;
+            display: flex; align-items: center; gap: 20px;
+        }
+        .section-title::after { content: ""; flex: 1; height: 1px; background: var(--cinza-carvao); }
+
+        /* SERVIÇOS */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .service-card {
+            background: var(--cinza-carvao); padding: 50px;
+            border: 1px solid transparent; transition: var(--transition);
+        }
+        .service-card:hover { border-color: var(--verde-musgo-escuro); transform: translateY(-10px); background: #323232; }
+        .service-card i { color: var(--verde-musgo-pastel); margin-bottom: 25px; }
+        .service-card h3 { color: var(--off-white); text-transform: uppercase; margin-bottom: 15px; }
+        .service-card p { font-size: 0.9rem; color: var(--cinza-fosco); }
+
+        /* PACOTES INTERATIVOS */
+        .packages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .package-card {
+            background: var(--cinza-carvao); padding: 50px 30px; text-align: center;
+            border-bottom: 4px solid transparent; transition: var(--transition);
+        }
+        .package-card:hover { border-color: var(--verde-musgo-pastel); background: #323232; }
+        .package-card.popular { background: var(--verde-musgo-escuro); color: var(--off-white); transform: scale(1.05); }
+        .package-card.popular h3, .package-card.popular .price { color: var(--off-white); }
+        
+        .package-card h3 { text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; color: var(--verde-musgo-pastel); }
+        .package-card .price { font-size: 3rem; font-weight: 900; color: var(--off-white); margin: 20px 0; }
+        .package-card .price span { font-size: 1rem; opacity: 0.6; }
+        .package-card ul { list-style: none; margin-bottom: 30px; font-size: 0.9rem; }
+        .package-card li { margin-bottom: 10px; }
+
+        /* TRABALHOS (GALERIA ÚNICA) */
+        .works-gallery {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 15px;
+        }
+        .work-item { 
+            position: relative; overflow: hidden; background: #000; height: 400px;
+            border: 1px solid var(--cinza-carvao);
+        }
+        .work-item img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: grayscale(40%);
+        }
+        .work-item:hover img { transform: scale(1.1); filter: grayscale(0); }
+
+        /* CONTATO */
+        .contact-box {
+            background: var(--cinza-carvao); padding: 80px 40px; text-align: center;
+            border: 1px solid var(--verde-musgo-escuro);
+        }
+        .social-btns { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 40px; }
+        .social-btn {
+            padding: 15px 30px; border: 1px solid var(--cinza-fosco);
+            text-decoration: none; color: var(--off-white); font-weight: 700;
+            text-transform: uppercase; font-size: 0.8rem; transition: var(--transition);
+        }
+        .social-btn:hover { background: var(--off-white); color: #000; border-color: var(--off-white); }
+
+        footer { text-align: center; padding: 60px; color: var(--cinza-fosco); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* ANIMAÇÃO DE REVELAÇÃO */
+        .reveal { opacity: 0; transform: translateY(40px); transition: 1s all ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 4rem; letter-spacing: -2px; }
+            .section-title { font-size: 2rem; }
+            .package-card.popular { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="texture-overlay"></div>
+
+    <nav>
+        <div class="logo">CLEY.DZN</div>
+        <div class="nav-links">
+            <a href="#sobre">Sobre</a>
+            <a href="#trabalhos">Trabalhos</a>
+            <a href="#pacotes">Pacotes</a>
+            <a href="https://wa.me/5522998876899">Contato</a>
+        </div>
+    </nav>
+
+    <header>
+        <img src="https://industrial-amethyst-pr4t0a3b9a.edgeone.app/acea83c0-01fd-11f1-a8eb-7d0816e9617f.png" alt="Cleydson Cley" class="profile-img">
+        <p class="hero-tag">Social Media • Creative Design</p>
+        <h1>CLEYDSON<br>CLEY</h1>
+        <a href="https://wa.me/5522998876899" target="_blank" class="btn-cta">
+            <i data-lucide="message-square"></i> Iniciar Projeto
+        </a>
+    </header>
+
+    <section id="sobre" class="reveal">
+        <h2 class="section-title">Sobre</h2>
+        <div style="max-width: 800px;">
+            <p style="font-size: 1.8rem; color: var(--off-white); font-weight: 300; line-height: 1.3;">
+                Sou estrategista visual focado em transformar perfis comuns em <span style="color: var(--verde-musgo-pastel); font-weight: 700;">referências digitais</span>. Ajudo marcas e eventos a se comunicarem com clareza através de design autoral e copy assertivo. 100% Home Office, focado em resultados reais.
+            </p>
+        </div>
+    </section>
+
+    <section class="reveal">
+        <h2 class="section-title">Serviços</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i data-lucide="layers" size="40"></i>
+                <h3>Social Media</h3>
+                <p>Planejamento estratégico, curadoria de conteúdo e gestão de posts para feed e stories.</p>
+            </div>
+            <div class="service-card">
+                <i data-lucide="monitor" size="40"></i>
+                <h3>Design Gráfico</h3>
+                <p>Artes exclusivas para redes sociais, capas de eventos, banners e criativos para anúncios.</p>
+            </div>
+            <div class="service-card">
+                <i data-lucide="file-text" size="40"></i>
+                <h3>Copy Simples</h3>
+                <p>Escrita criativa focada em conversão, legendas magnéticas e chamadas para ação (CTA).</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pacotes" class="reveal">
+        <h2 class="section-title">Pacotes</h2>
+        <div class="packages-grid">
+            <div class="package-card">
+                <h3>Básico</h3>
+                <div class="price"><span>R$</span>350</div>
+                <ul>
+                    <li>8 Posts Feed</li>
+                    <li>4 Stories</li>
+                    <li>Identidade Visual Simples</li>
+                </ul>
+                <p style="font-size: 0.7rem; opacity: 0.5;">Ideal para pequenos negócios</p>
+            </div>
+            <div class="package-card popular">
+                <h3>Padrão</h3>
+                <div class="price"><span>R$</span>500</div>
+                <ul>
+                    <li>12 Posts Feed</li>
+                    <li>8 Stories</li>
+                    <li>Organização Visual de Perfil</li>
+                </ul>
+                <p style="font-size: 0.7rem; font-weight: 800;">O MAIS PROCURADO</p>
+            </div>
+            <div class="package-card">
+                <h3>Premium</h3>
+                <div class="price"><span>R$</span>860</div>
+                <ul>
+                    <li>16 Posts Feed</li>
+                    <li>12 Stories</li>
+                    <li>Identidade Personalizada</li>
+                    <li>Textos Estratégicos (Copy)</li>
+                </ul>
+                <p style="font-size: 0.7rem; opacity: 0.5;">Foco em crescimento acelerado</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="trabalhos" class="reveal">
+        <h2 class="section-title">Trabalhos</h2>
+        <div class="works-gallery">
+            <div class="work-item">
+                <img src="https://anonymous-scarlet-ntkhdua8if.edgeone.app/c4cfa620-016a-11f1-b226-ef51d6378c49.png">
+            </div>
+            <div class="work-item">
+                <img src="https://yawning-gray-dslhnvgtzl.edgeone.app/file_00000000c740720e890687c3fe326530.png">
+            </div>
+            <div class="work-item">
+                <img src="https://characteristic-tomato-vk1sg0ncwo.edgeone.app/332b1a60-016a-11f1-b226-ef51d6378c49.png">
+            </div>
+            <div class="work-item">
+                <img src="https://coherent-apricot-shxgp9umfh.edgeone.app/88978460-009e-11f1-b4de-8f95f69e8066.png">
+            </div>
+            <div class="work-item">
+                <img src="https://hidden-orange-mdlj32zgus.edgeone.app/file_00000000d0e871f6921bd0a14675fb58.png">
+            </div>
+        </div>
+    </section>
+
+    <section class="reveal">
+        <div class="contact-box">
+            <h2 style="color: var(--off-white); font-size: 2.5rem; text-transform: uppercase;">Vamos elevar o seu nível?</h2>
+            <p>Disponível para projetos mensais ou demandas únicas.</p>
+            <div class="social-btns">
+                <a href="https://wa.me/5522998876899" class="social-btn" style="background: var(--verde-musgo-pastel); color: #000; border: none;">WhatsApp</a>
+                <a href="https://instagram.com/cleey_sz" class="social-btn">Instagram</a>
+                <a href="mailto:cleygamer8@gmail.com" class="social-btn">E-mail</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>“Boa comunicação visual não é luxo — é necessidade.”</p>
+        <p style="margin-top: 15px; opacity: 0.4;">© 2024 Cleydson Cley • Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Observer para animações de scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
